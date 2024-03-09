@@ -182,10 +182,6 @@ class Solver(object):
         self.beta1_VAE = args.beta1_VAE
         self.beta2_VAE = args.beta2_VAE
 
-        self.lr_D = args.lr_D
-        self.beta1_D = args.beta1_D
-        self.beta2_D = args.beta2_D
-
         self.anneal_steps = 2000
         self.alpha = float(1.)
         self.beta = float(6.)
@@ -193,7 +189,6 @@ class Solver(object):
         self.dataset_size = len(self.data_loader.dataset)
         print("dataset_size", self.dataset_size)
         self.pbar = tqdm(total=self.max_iter*(np.ceil(self.dataset_size/self.batch_size)))
-
 
         self.VAE = VAE_attention(input_dim=train_data.shape[1], z_dim=self.z_dim).to(self.device)
         self.nc = 1
