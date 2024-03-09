@@ -9,5 +9,5 @@ capable of simultaneous prediction across N = 6 different crucial outcomes in ca
 ![image](https://github.com/JunboShen/cardiacVAE/assets/93768018/bcd73c3d-f2ea-4a80-97ef-b5d92613f99e)
 
 
-The repo contains train and test codes.
+The repo contains training and testing codes.
 
