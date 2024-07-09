@@ -11,3 +11,4 @@ capable of simultaneous prediction across N = 6 different crucial outcomes in hi
 
 The repo contains training and testing codes.
 
+Trained model files can be downloaded from here: <https://figshare.com/s/e44f0120502b01583ba2>. Trained under 5-fold cross-validation settings specified in the paper.
