@@ -13,7 +13,7 @@ The repo contains training and testing codes for surgVAE and baseline models.
 
 Trained model files can be downloaded from here: <https://figshare.com/s/e44f0120502b01583ba2>. Trained under 5-fold cross-validation settings specified in the paper.
 
-# Training settings
+# Train & Test Settings
 
 All methods are trained and tested under stratified 5-fold cross-validation, with slight differences in their settings.
 
