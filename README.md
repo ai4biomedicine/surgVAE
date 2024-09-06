@@ -2,18 +2,17 @@
 
 The implementation of surgVAE (surgical Variational Autoencoder), 
 
-the innovative and highly accurate VAE-based Perioperative Prediction Framework (Semi-supervised and Multi-tasking model), 
-
-capable of simultaneous prediction across N = 6 different crucial outcomes in high-risk cardiac surgery.
-
-![image](https://github.com/JunboShen/cardiacVAE/assets/93768018/bcd73c3d-f2ea-4a80-97ef-b5d92613f99e)
+the innovative and highly accurate VAE-based Perioperative Prediction Framework (Semi-supervised and Multi-tasking model). 
 
 The repo contains training and testing codes for surgVAE and baseline models.
 
-Trained model files can be downloaded from here: <https://figshare.com/s/e44f0120502b01583ba2>. Trained under 5-fold cross-validation settings specified in the paper.
+# Overview of the framework
 
-# Overview of the pipeline
+surgVAE is a unified model with auxiliary predictors tailored for N = 6 important postoperative complications after cardiac surgery (AF, Cardiac Arrest, DVT/PE, Post AKI Status, Blood Transfusion, Intraop Cardiac Events), enabling simultaneous prediction across different complications. 
+
 ![Pipeline](https://github.com/user-attachments/assets/7897b6cc-32ec-4245-8fac-b84246ff9d75)
+
+Trained model files can be downloaded from here: <https://figshare.com/s/e44f0120502b01583ba2>. Trained under 5-fold cross-validation settings specified in the paper.
 
 # Train & test settings
 
