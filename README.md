@@ -8,6 +8,8 @@ capable of simultaneous prediction across N = 6 different crucial outcomes in hi
 
 ![image](https://github.com/JunboShen/cardiacVAE/assets/93768018/bcd73c3d-f2ea-4a80-97ef-b5d92613f99e)
 
+[Figure1.pdf](https://github.com/user-attachments/files/16910327/Figure1.pdf)
+
 
 The repo contains training and testing codes for surgVAE and baseline models.
 
