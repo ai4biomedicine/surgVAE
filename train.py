@@ -327,12 +327,9 @@ class Solver(object):
                                                                                 dataset_size,
                                                                                 is_mss=is_mss)
 
-        #mi_loss = (log_q_zCx - log_qz).mean()
 
-        #tc_loss = (log_qz - log_prod_qzi).mean()
         tc_loss = (log_qz - log_prod_qz1 - log_prod_qz2).mean()
 
-        #kld_loss = (log_prod_qzi - log_pz).mean()
         original_KL = self._kl_normal_loss(mu, log_var)
         contrastive = ContrastiveLoss(1, PairSelector())
 
