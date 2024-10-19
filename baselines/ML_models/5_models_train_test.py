@@ -49,10 +49,10 @@ for idx, outcome in enumerate(outcomes):
         test_outcome2 = inputs.outcomes[(inputs.outcomes.orlogid.isin(ids_test))].copy()
         test_outcome2 = test_outcome2[['cardiac', 'AF', 'arrest', 'DVT_PE', 'post_aki_status', 'total_blood']].to_numpy()
         test_outcome2 = np.where(test_outcome2> 0, 1, 0)
+
+        y_train = train_outcome2[:, idx]
         y_train = np.concatenate((y_train, y_train2), axis=0)
         X_train = np.concatenate((X_train, X_train2), axis=0)
-        y_train = train_outcome2[:, idx]
-
         y_test = test_outcome2[:, idx]
         print(outcome + ' ' + "fold " + str(i))
        
