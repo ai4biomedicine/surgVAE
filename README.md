@@ -1,10 +1,12 @@
 # surgVAE
 
-The implementation of surgVAE (surgical Variational Autoencoder), 
+The implementation of surgVAE (surgical Variational Autoencoder).
 
-the innovative and highly accurate VAE-based Perioperative Prediction Framework (Semi-supervised and Multi-tasking model). 
+A Novel Generative Multi-Task Representation Learning Approach for Predicting Postoperative Complications in Cardiac Surgery Patients. 
 
 The repo contains training and testing codes for surgVAE and baseline models.
+
+The arxiv preprint of the paper can be accessed via [Link](https://www.arxiv.org/pdf/2412.01950).
 
 # Overview of the framework
 
