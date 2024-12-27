@@ -21,7 +21,7 @@ index = 0
 from dataloader import *
 from transform import *
 
-#data preprocessing
+#Data loading and preprocessing
 with open('../../inputs_new.pickle','rb') as handle:
     inputs = pickle.load(handle)
 
@@ -55,7 +55,7 @@ outcomes2 = train_outcome2[['cardiac', 'AF','arrest', 'DVT_PE', 'post_aki_status
 outcomes2 = np.where(outcomes2 > 0, 1, 0)
 outcomes = np.concatenate((outcomes, outcomes2), axis=0)
 
-#types2 is of length of train_data2 and all 2.0
+#types2 is of length of train_data2 and all 2.0 (Cardiac surgery)
 types2 = np.full((train_data2.shape[0],), 2.0)
 
 surgery_types = np.concatenate((surgery_types, types2), axis=0)

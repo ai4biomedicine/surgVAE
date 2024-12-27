@@ -25,7 +25,7 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
     
-    #data preprocessing
+    #Data loading and preprocessing
     with open('../../../inputs_new.pickle','rb') as handle:
         inputs = pickle.load(handle)
 
@@ -46,12 +46,8 @@ if __name__ == '__main__':
     #convert to binary, if >0, then 1, else 0
     outcomes = np.where(outcomes > 0, 1, 0)
 
-    #folder = ('../preops_cv/')
-    #outcome = 'arrest'
-    #foldername = folder+outcome+'/'
-    #train_data2 = pickle.load(open(foldername+'X_train_'+str(args.fold_idx)+'.pickle', 'rb'))
     train_data = np.delete(train_data, 163, axis=1)
-    #train_data duplicate 6
+
     train_data_list_pos = []
     train_y_list_pos = []
     train_data_list_neg = []

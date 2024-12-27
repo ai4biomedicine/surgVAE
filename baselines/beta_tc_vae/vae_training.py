@@ -21,7 +21,7 @@ index = 0
 from dataloader import *
 from transform import *
 
-#data preprocessing
+#Data loading and preprocessing
 with open('../../inputs_new.pickle','rb') as handle:
     inputs = pickle.load(handle)
 

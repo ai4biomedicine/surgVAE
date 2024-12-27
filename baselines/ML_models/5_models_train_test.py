@@ -31,6 +31,7 @@ for idx, outcome in enumerate(outcomes):
         #set model, 5 ML models
         model =  LogisticRegression(random_state=0) #change from RandomForestClassifier, GradientBoostingClassifier, LogisticRegression, MLPClassifier, xgb.XGBClassifier
         
+        #Data loading and preprocessing
         X_train = pkl.load(open(foldername + 'X_train_' + str(i) + '.pickle', 'rb'))
         X_test = pkl.load(open(foldername + 'X_test_' + str(i) + '.pickle', 'rb'))
         # load X_train, X_test, y_train, y_test
@@ -55,7 +56,7 @@ for idx, outcome in enumerate(outcomes):
         X_train = np.concatenate((X_train, X_train2), axis=0)
         y_test = test_outcome2[:, idx]
         print(outcome + ' ' + "fold " + str(i))
-       
+        # remove column 163
         X_train = np.delete(X_train, 163, axis=1)
         X_test = np.delete(X_test, 163, axis=1)
 

@@ -56,7 +56,7 @@ if __name__ == "__main__":
 
             vae_model = pkl.load(open('./distangle_vae_model_epoch' + str(args.epoch) + '/model_fold' + str(i) + '.pickle', 'rb'))
 
-            # transform to float32
+            # transform to float32, delete column 163
             X_train = np.delete(X_train, 163, axis=1)
             X_test = np.delete(X_test, 163, axis=1)
 

@@ -493,9 +493,11 @@ if __name__ == "__main__":
     parser.add_argument('--print_iter', default=100, type=int, help='print losses iter')
 
     args = parser.parse_args()
+    
+    #Data loading and preprocessing
     with open('../../../inputs_new.pickle','rb') as handle:
         inputs = pickle.load(handle)
-    print(inputs)
+   
     #change column name orlogid_encoded to orlogid
     inputs.outcomes.rename(columns={'orlogid_encoded':'orlogid'}, inplace=True)
     inputs.texts.rename(columns={'orlogid_encoded':'orlogid'}, inplace=True)
@@ -516,10 +518,8 @@ if __name__ == "__main__":
             print(train_outcome[outcome].value_counts())
 
     outcomes = train_outcome[['cardiac', 'AF','arrest', 'DVT_PE', 'post_aki_status', 'total_blood']].to_numpy()
-    print(outcomes.shape)
     #convert to binary, if >0, then 1, else 0
     outcomes = np.where(outcomes > 0, 1, 0)
-    print(outcomes[0])
 
     folder = ('../preops_cv/')
     outcome = 'arrest'
@@ -531,23 +531,20 @@ if __name__ == "__main__":
     train_ids2 = pickle.load(open(foldername+'outcome_data_train_ids_'+str(args.fold_idx)+'.pickle', 'rb'))
     train_outcome2 = inputs.outcomes[(inputs.outcomes.orlogid.isin(train_ids2))].copy()
     outcomes2 = train_outcome2[['cardiac', 'AF','arrest', 'DVT_PE', 'post_aki_status', 'total_blood']].to_numpy()
-    print(outcomes2.shape)
+
     #convert to binary, if >0, then 1, else 0
     outcomes2 = np.where(outcomes2 > 0, 1, 0)
-    print(outcomes2[0])
+
     outcomes = np.concatenate((outcomes, outcomes2), axis=0)
 
-    #types2 is of length of train_data2 and all 2.0
+    #types2 is of length of train_data2 and all 2.0 (Cardiac Surgery)
     types2 = np.full((train_data2.shape[0],), 2.0)
 
     surgery_types = np.concatenate((surgery_types, types2), axis=0)
 
-    print(train_data.shape)
-    print(train_data2.shape)
-    print(Counter(surgery_types))
+    #Network initialization
     net = Solver(args)
 
-
-   
+    #Training
     vae_recon_losses, vae_kld_losses, vae_tc_losses, vae_contrastive_losses, vae_matching_losses, vae_prediction_losses = net.train()
  
