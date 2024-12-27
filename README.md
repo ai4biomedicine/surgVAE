@@ -12,7 +12,7 @@ The arxiv preprint of the paper can be accessed via [Link](https://www.arxiv.org
 
 surgVAE is a unified model with auxiliary predictors tailored for N = 6 important postoperative complications after cardiac surgery (AF, Cardiac Arrest, DVT/PE, Post AKI Status, Blood Transfusion, Intraop Cardiac Events), enabling simultaneous prediction across different complications. 
 
-![Pipeline](https://github.com/user-attachments/assets/7897b6cc-32ec-4245-8fac-b84246ff9d75)
+![Pipeline](https://github.com/user-attachments/assets/7adf3f35-971b-44c9-8208-170f5dc92098)
 
 Trained model files can be downloaded from here: <https://figshare.com/s/e44f0120502b01583ba2>. Trained under 5-fold cross-validation settings specified in the paper.
 
