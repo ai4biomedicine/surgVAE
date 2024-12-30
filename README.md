@@ -1,12 +1,10 @@
 # surgVAE
 
-The implementation of surgVAE (surgical Variational Autoencoder).
+This repository contains code for the paper ***A Novel Generative Multi-Task Representation Learning Approach for Predicting Postoperative Complications in Cardiac Surgery Patients***, which is accepted by *Journal of the American Medical Informatics Association*.
 
-A Novel Generative Multi-Task Representation Learning Approach for Predicting Postoperative Complications in Cardiac Surgery Patients. 
+The repo contains the implementation of surgVAE (surgical Variational Autoencoder) and baseline models.
 
-The repo contains training and testing codes for surgVAE and baseline models.
-
-The arxiv preprint of the paper can be accessed via [Link](https://www.arxiv.org/pdf/2412.01950).
+The paper can be accessed via [Link](https://doi.org/10.1093/jamia/ocae316).
 
 # Overview of the framework
 
