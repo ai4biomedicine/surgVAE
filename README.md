@@ -12,8 +12,6 @@ surgVAE is a unified model with auxiliary predictors tailored for N = 6 importan
 
 ![Pipeline](https://github.com/user-attachments/assets/7adf3f35-971b-44c9-8208-170f5dc92098)
 
-Trained model files can be downloaded from here: <https://figshare.com/s/e44f0120502b01583ba2>. Trained under 5-fold cross-validation settings specified in the paper.
-
 # Train & test settings
 
 All methods are trained and tested under stratified 5-fold cross-validation, with slight differences in their settings.
