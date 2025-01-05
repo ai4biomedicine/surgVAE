@@ -56,15 +56,13 @@ if __name__ == '__main__':
     for idx, outcome_name in enumerate(outcomes_name):
         train_data_ = train_data.copy()
         train_y_ = outcomes[:,idx].copy()
-        #use oversampling to balance the data
+        #use oversampling to balance the data with equal number of positive and negative samples
         ros = RandomOverSampler(random_state=0)
         train_data_, train_y_ = ros.fit_resample(train_data_, train_y_)
         #split the data into positive and negative
         train_data_pos = train_data_[train_y_==1]
         train_data_neg = train_data_[train_y_==0]
-        #check if the data is balanced
-        print(train_data_pos.shape)
-        print(train_data_neg.shape)
+
         #shape the data to drop the last batch
         train_data_pos = train_data_pos[:-(train_data_pos.shape[0]%128)]
         train_data_neg = train_data_neg[:-(train_data_neg.shape[0]%128)]
@@ -105,8 +103,6 @@ if __name__ == '__main__':
         ta = Averager()
         
         for i, (batch_pos, batch_neg) in enumerate(zip(train_data_pos_loader, train_data_neg_loader), 1):
-            #p = args.shot * args.train_way
-            #data_shot, data_query = data[:p], data[p:]
             
             (train_batch_pos, train_batch_pos_outcome) = batch_pos
             (train_batch_neg, train_batch_neg_outcome) = batch_neg
@@ -120,15 +116,11 @@ if __name__ == '__main__':
             data_query = torch.concatenate((train_batch_neg[batch_size//2:], train_batch_pos[batch_size//2:])).cuda()
 
             proto = model(data_shot)
-            #proto = proto.reshape(args.shot, args.train_way, -1).mean(dim=0)
+
             proto_neg = proto[:batch_size//2].mean(dim=0) 
             proto_pos = proto[batch_size//2:].mean(dim=0)
             proto = torch.stack((proto_neg, proto_pos)) #shape (2, 128)
             
-            
-
-
-            #label = torch.arange(args.train_way).repeat(args.query)
             label_pos = train_batch_pos_outcome[batch_size//2:]
             label_neg = train_batch_neg_outcome[batch_size//2:]
             label = torch.concatenate((label_neg, label_pos)).cuda()

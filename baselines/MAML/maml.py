@@ -16,7 +16,6 @@ class DNN(nn.Module):
     def __init__(self, input_size, hidden_size, num_layers, num_labels):
         super(DNN, self).__init__()
         self.hidden_size = hidden_size
-        #self.scalar  = StandardScaler()
 
         self.fc1 = nn.Linear(input_size, hidden_size)
         self.fc2 = nn.Linear(hidden_size, hidden_size)
@@ -55,14 +54,7 @@ class Learner(nn.Module):
         self.model.train()
 
     def forward(self, batch_tasks, training=True):
-        """
-        batch = [(support TensorDataset, query TensorDataset),
-                 (support TensorDataset, query TensorDataset),
-                 (support TensorDataset, query TensorDataset),
-                 (support TensorDataset, query TensorDataset)]
 
-        # support = TensorDataset(all_input_ids, all_attention_mask, all_segment_ids, all_label_ids)
-        """
         task_accs = []
         task_preds = []
         task_labels = []
@@ -85,18 +77,10 @@ class Learner(nn.Module):
             support_labels = torch.tensor(support[1], dtype=torch.long)  # Assuming these are long integers
 
             # Now create the TensorDataset
-            #support = TensorDataset(support_features, support_labels)
-            '''
-            if training:
-                smote = SMOTE(random_state=0)
-                support_features, support_labels = smote.fit_resample(support_features, support_labels)
-                support_features = torch.tensor(support_features, dtype=torch.float32)
-                support_labels = torch.tensor(support_labels, dtype=torch.long)
-            '''
+            
             fast_model = deepcopy(self.model)
             fast_model.to(self.device)
-            #fast_model.scalar.fit_transform(support_features.detach().cpu().numpy())
-            #support_features = fast_model.scalar.transform(support_features.detach().cpu().numpy())
+
             support_features = torch.tensor(support_features, dtype=torch.float32)
 
 
@@ -108,20 +92,12 @@ class Learner(nn.Module):
 
             # Convert the numpy array to a PyTorch tensor
             query_features = torch.tensor(query_float, dtype=torch.float32)
-            #query_features = fast_model.scalar.transform(query_features.detach().cpu().numpy())
+
             query_features = torch.tensor(query_features, dtype=torch.float32)
 
-            query_labels = torch.tensor(query[1], dtype=torch.long)  # Assuming these are long integers
-            '''
-            if training:
-                smote = SMOTE(random_state=0)
-                query_features, query_labels = smote.fit_resample(query_features, query_labels)
-                query_features = torch.tensor(query_features, dtype=torch.float32)
-                query_labels = torch.tensor(query_labels, dtype=torch.long)
-            '''
-
+            query_labels = torch.tensor(query[1], dtype=torch.long)  
+           
             query = TensorDataset(query_features, query_labels)
-            print(len(query))
 
 
             support_dataloader = DataLoader(support, sampler=None, batch_size=self.inner_batch_size)
@@ -160,9 +136,6 @@ class Learner(nn.Module):
             q_outputs = torch.cat(q_outputs, dim=0)
             q_label_id = torch.cat(q_label_id, dim=0)
 
-
-            #q_sequences, q_label_id = (item.to(self.device) for item in next(iter(query_dataloader)))
-            #q_outputs = fast_model(q_sequences)
 
             if training:
                 q_loss = CrossEntropyLoss()(q_outputs, q_label_id)

@@ -10,15 +10,11 @@ class feature_encoder_1d(nn.Module):
         self.input_len = input_len
         self.d_model = d_model
         self.feature_encoder = nn.Sequential(
-            # nn.Linear(self.input_len, self.input_len * self.d_model*2),
-            # nn.Sigmoid(),
-            # nn.Linear(self.d_model*self.input_len*2, self.input_len * self.d_model)
             nn.Linear(self.input_len, self.input_len * self.d_model)
         )
 
     def forward(self, encoded_features):
         _b, _l = encoded_features.shape
-        #encoded_features = encoded_features.flatten(1, 2)  # (Bxinput_lenx1) -> (Bxinput_len)
         encoded_features = self.feature_encoder(encoded_features)  # (B x input_len) -> (B x input_len*d_model)
         encoded_features = encoded_features.view(_b, _l, self.d_model)  # (B x input_len*d_model) -> (Bxinput_lenxd_model)
         return encoded_features

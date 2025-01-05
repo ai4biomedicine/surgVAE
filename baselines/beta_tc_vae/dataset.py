@@ -19,18 +19,9 @@ class CustomTensorDataset(Dataset):
 
 
     def __getitem__(self, index1):
-        #index2 = random.choice(self.indices)
-
         data1 = self.data_tensor[index1]
         outcome = self.outcomes[index1]
         type = self.types[index1]
-
-        #data2 = self.data_tensor[index1]
-
-        #data1 = normalize_tensor(data1)
-
-        #data2 = normalize_tensor(data2)
-
 
         return data1, outcome, type
 
@@ -40,9 +31,7 @@ class CustomTensorDataset(Dataset):
 
 def return_data(batch_size, data, outcomes, types):
     data = np.array(data)
-    # print max and min
-    print("max: ", data.max())
-    print("min: ", data.min())
+
     # Check if data type is object
     if data.dtype == np.object_:
         print("Data contains non-numeric values. Attempting to convert...")

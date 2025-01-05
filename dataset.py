@@ -31,9 +31,6 @@ class CustomTensorDataset(Dataset):
 
 def return_data(batch_size, data, outcomes, types):
     data = np.array(data)
-    # print max and min
-    print("max: ", data.max())
-    print("min: ", data.min())
     # Check if data type is object
     if data.dtype == np.object_:
         print("Data contains non-numeric values. Attempting to convert...")

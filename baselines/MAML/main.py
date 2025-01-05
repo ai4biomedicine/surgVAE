@@ -123,28 +123,7 @@ def random_seed(value):
 
 
 def create_batch_of_tasks(X_support, y_support, X_query, y_query, batch_size=4, is_shuffle=True):
-    '''task_list = []
-    for i in range(len(X)):
-        # Splitting support and query set for each task
-        num_support = int(k_spt * len(X[i]))
-        num_query = int(k_qry * len(X[i]))
-
-        support_idx = np.random.choice(len(X[i]), num_support, replace=False)
-        query_idx = np.random.choice(len(X[i]), num_query, replace=False)
-
-        X_spt, y_spt = X[i][support_idx], y[i][support_idx]
-        X_qry, y_qry = X[i][query_idx], y[i][query_idx]
-
-        task_list.append(([X_spt, y_spt], [X_qry, y_qry]))
-
-    if is_shuffle:
-        random.shuffle(task_list)
-
-    # Batch up the tasks, return a list of batches containing batch_size tasks
-
-    batches = [task_list[i:i + batch_size] for i in range(0, len(task_list), batch_size)]
-
-    return batches'''
+    # Create a list of tasks, each task is a tuple of support and query set
     task_list = []
     for i in range(len(X_support)):
         task_list.append(([X_support[i], y_support[i]], [X_query[i], y_query[i]]))
@@ -225,8 +204,6 @@ def main():
                     dfs.append(df)
                 df = pd.concat(dfs)
                 df.to_csv('results_DNN.csv', index=False)
-
-
 
                 print('Step:', step, 'Test ACC:', np.mean(acc_all_test))
 

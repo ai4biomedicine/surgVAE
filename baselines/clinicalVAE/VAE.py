@@ -74,11 +74,6 @@ class ClinicalVAE(nn.Module):
             torch.nn.ReLU(),
             torch.nn.Linear(100, (2 * self.latent_dimension)),
         ).to(device)
-        # self.predictor =nn.Sequential(
-        #     nn.Linear(self.latent_dimension*2,self.hidden_layer_width),
-        #     nn.ReLU(),
-        #     nn.Linear(self.hidden_layer_width,number_of_classes[0])
-        #                              )
         
         self.optimizer = optim.Adam(
             list(self.encoder.parameters()) + list(self.decoder.parameters())
