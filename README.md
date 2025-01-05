@@ -1,20 +1,16 @@
 # surgVAE
 
-The implementation of surgVAE (surgical Variational Autoencoder).
+This repository contains code for the paper ***A Novel Generative Multi-Task Representation Learning Approach for Predicting Postoperative Complications in Cardiac Surgery Patients***, which is accepted by *Journal of the American Medical Informatics Association (JAMIA)*.
 
-A Novel Generative Multi-Task Representation Learning Approach for Predicting Postoperative Complications in Cardiac Surgery Patients. 
+The repo contains the implementation of surgVAE (surgical Variational Autoencoder) and baseline models.
 
-The repo contains training and testing codes for surgVAE and baseline models.
-
-The arxiv preprint of the paper can be accessed via [Link](https://www.arxiv.org/pdf/2412.01950).
+The paper can be accessed via [Link](https://doi.org/10.1093/jamia/ocae316).
 
 # Overview of the framework
 
 surgVAE is a unified model with auxiliary predictors tailored for N = 6 important postoperative complications after cardiac surgery (AF, Cardiac Arrest, DVT/PE, Post AKI Status, Blood Transfusion, Intraop Cardiac Events), enabling simultaneous prediction across different complications. 
 
-![Pipeline](https://github.com/user-attachments/assets/7897b6cc-32ec-4245-8fac-b84246ff9d75)
-
-Trained model files can be downloaded from here: <https://figshare.com/s/e44f0120502b01583ba2>. Trained under 5-fold cross-validation settings specified in the paper.
+![Pipeline](https://github.com/user-attachments/assets/7adf3f35-971b-44c9-8208-170f5dc92098)
 
 # Train & test settings
 
@@ -33,3 +29,23 @@ For each one train and test split,
 4. **Other ML baselines (XGBoost, DNN, LR, RF, GBM), and Clinical VAE** are trained using the train set containing both cardiac surgery and non-cardiac surgery data. Each model is trained/tested **6 times** for N = 6 different outcomes.
 
 There are 5 train and test fold splits in the 5-fold cross-validation setting.
+
+## Citations <a name="citations"></a>
+
+If you find the methods useful in your research, please kindly cite our paper:
+
+```bibtex
+@article{10.1093/jamia/ocae316,
+    author = {Shen, Junbo and Xue, Bing and Kannampallil, Thomas and Lu, Chenyang and Abraham, Joanna},
+    title = {A novel generative multi-task representation learning approach for predicting postoperative complications in cardiac surgery patients},
+    journal = {Journal of the American Medical Informatics Association},
+    pages = {ocae316},
+    year = {2024},
+    month = {12},
+    abstract = {Early detection of surgical complications allows for timely therapy and proactive risk mitigation. Machine learning (ML) can be leveraged to identify and predict patient risks for postoperative complications. We developed and validated the effectiveness of predicting postoperative complications using a novel surgical Variational Autoencoder (surgVAE) that uncovers intrinsic patterns via cross-task and cross-cohort presentation learning.This retrospective cohort study used data from the electronic health records of adult surgical patients over 4 years (2018-2021). Six key postoperative complications for cardiac surgery were assessed: acute kidney injury, atrial fibrillation, cardiac arrest, deep vein thrombosis or pulmonary embolism, blood transfusion, and other intraoperative cardiac events. We compared surgVAE’s prediction performance against widely-used ML models and advanced representation learning and generative models under 5-fold cross-validation.89 246 surgeries (49\% male, median [IQR] age: 57 [45-69]) were included, with 6502 in the targeted cardiac surgery cohort (61\% male, median [IQR] age: 60 [53-70]). surgVAE demonstrated generally superior performance over existing ML solutions across postoperative complications of cardiac surgery patients, achieving macro-averaged AUPRC of 0.409 and macro-averaged AUROC of 0.831, which were 3.4\% and 3.7\% higher, respectively, than the best alternative method (by AUPRC scores). Model interpretation using Integrated Gradients highlighted key risk factors based on preoperative variable importance.Our advanced representation learning framework surgVAE showed excellent discriminatory performance for predicting postoperative complications and addressing the challenges of data complexity, small cohort sizes, and low-frequency positive events. surgVAE enables data-driven predictions of patient risks and prognosis while enhancing the interpretability of patient risk profiles.},
+    issn = {1527-974X},
+    doi = {10.1093/jamia/ocae316},
+    url = {https://doi.org/10.1093/jamia/ocae316},
+    eprint = {https://academic.oup.com/jamia/advance-article-pdf/doi/10.1093/jamia/ocae316/61289374/ocae316.pdf},
+}
+```
