@@ -4,7 +4,7 @@ This repository contains code for the paper ***A Novel Generative Multi-Task Rep
 
 The repo contains the implementation of surgVAE (surgical Variational Autoencoder) and baseline models.
 
-The paper can be accessed via [Link](https://doi.org/10.1093/jamia/ocae316).
+The paper and its appendix can be accessed via [Link](https://doi.org/10.1093/jamia/ocae316).
 
 # Overview of the framework
 
